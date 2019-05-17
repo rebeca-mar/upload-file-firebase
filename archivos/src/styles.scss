@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.styleSnackDanger{
+    background-color: #c51414;
+    margin: 30px !important;
+    font-size: 20px !important;
+    color: white;
+  }
+  
+  .styleSnackWarning{
+    background-color: #fa8231;
+    margin: 30px !important;
+    font-size: 20px !important;
+    color: white;
+  }
+  
+  .styleSnackSuccess{
+    background-color: #009432;
+    margin: 30px !important;
+    font-size: 20px !important;
+    color: white;
+  }

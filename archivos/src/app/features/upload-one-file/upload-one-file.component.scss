@@ -1,0 +1,39 @@
+.card-size {
+    width: 40%;
+    height: 15%;
+}
+
+.uploading-bar {
+    margin-top: 6%;
+}
+
+.text-bar {
+    font-weight: bold;
+}
+
+.bote {
+    margin-top: 6%;
+    background-image:url('../../../assets/img/deleteClose.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+    color: rgb(53,64,82);
+    cursor: pointer;
+    padding-left: 20px;
+}
+
+.bote:hover {
+    margin-top: 6%;
+    background-image:url('../../../assets/img/deleteOpen.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+    color: rgb(255,87,10);
+    padding-left: 20px;
+}
+
+.emphasize {
+    text-align: center;
+}
+
+.emphasize:hover {
+    color: #3867d6;
+}
