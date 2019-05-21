@@ -43,7 +43,7 @@ imports: [
   ],
 providers: [UploadToStorageService, AngularFireStorage],
 ```
-Ejecute el proyecto con `ng s -o`
+Ejecute el proyecto con `ng s -o` y diríjase a la ruta localhost:4200/archivos
 
 # May 2019
 This project uploads a file into a Cloud Storage bucket using [@angular/fire](https://www.npmjs.com/package/@angular/fire).<br> To run this project, clone it and install dependencies with `npm i`, also an account on Firebase is needed in order to obtain personal credentials.<br>---------------------------
@@ -84,4 +84,4 @@ imports: [
   ],
 providers: [UploadToStorageService, AngularFireStorage],
 ```
-Run in your terminal `ng s -o`
+Run in your terminal `ng s -o` and navigate to localhost:4200/archivos

@@ -7,15 +7,13 @@ import { TopRightSnackbarService } from './top-right-snackbar.service';
   providedIn: 'root'
 })
 export class UploadToStorageService {
-  porcentajeCarga: Observable<number>;
-  downloadURL: Observable<string>;
 
   public uploadPercent: string;
   public percentageNumber: any;
   public uploadUrl: any;
   public taskResponseFromUploadedFile: any;
 
-  constructor(private storage: AngularFireStorage, private snackPersonalizado: TopRightSnackbarService) { }
+  constructor(private storage: AngularFireStorage, private personalizedSnack: TopRightSnackbarService) { }
 
   // Manera 2: carga archivo, muestra porcentaje de carga, obtiene la URL del archivo cargado, agrega metadata (opcional)
   // El parametro metadata se puede recibir como null si no es necesario
@@ -37,16 +35,16 @@ export class UploadToStorageService {
         // Consulte el codigo de error: https://firebase.google.com/docs/storage/web/handle-errors
         if(error.code == "storage/unauthorized"){
           // Inicie request.auth como null en sus reglas de firebase: 
-          this.snackPersonalizado.openTopRightSnackBar('No tiene permiso para subir archivos', '', 'styleSnackDanger');
+          this.personalizedSnack.openTopRightSnackBar('No tiene permiso para subir archivos', '', 'styleSnackDanger');
         } else{
-          this.snackPersonalizado.openTopRightSnackBar('Error al cargar el archivo', '', 'styleSnackDanger');
+          this.personalizedSnack.openTopRightSnackBar('Error al cargar el archivo', '', 'styleSnackDanger');
         }
         
       }, () => {
         console.info('Se completó la carga del archivo');
         file = undefined
         // Abrir snackBar de éxito. Los estilos están en styles.ccs
-        this.snackPersonalizado.openTopRightSnackBar('¡Archivo cargado con éxito!', '', 'styleSnackSuccess');
+        this.personalizedSnack.openTopRightSnackBar('¡Archivo cargado con éxito!', '', 'styleSnackSuccess');
       });
 
       angularFireUploadTask.then(taskResponse => {
@@ -82,11 +80,11 @@ export class UploadToStorageService {
           respuesta => {
             respuesta = 'Archivo eliminado';
             //console.log('delete desde servicio: ', respuesta);
-            this.snackPersonalizado.openTopRightSnackBar(respuesta, '', 'styleSnackWarning');
+            this.personalizedSnack.openTopRightSnackBar(respuesta, '', 'styleSnackWarning');
             resolve(respuesta)
           });
       }else {
-        console.log("Error al eliminar el archivo")
+        console.error("Error al eliminar el archivo")
       }
     });
   }

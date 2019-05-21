@@ -17,7 +17,7 @@ export class UploadOneFileComponent implements OnInit {
   }
 
   public async uploadToStorage(event: File | any): Promise<any> {
-    let fileLocation: string = 'Carpeta2/YYYY/MM/dd/';
+    let fileLocation: string = 'Carpeta/1/2/';
     let fileName: string;
     let pendingFile: any;
     let metadata = null;
