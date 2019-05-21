@@ -4,12 +4,12 @@
 
 <div>
   <mat-card class="card-size">
-      <input type="file" accept=".jpg, .png, .gif" (change)="subiraStorage($event)">
-      <button *ngIf="urlArchivo" mat-raised-button class="bote" (click)="delete()">Eliminar archivo y adjuntar nuevo</button>
+      <input #fileReceiver type="file" accept=".jpg, .png, .gif" (change)="uploadToStorage($event)">
+      <button *ngIf="fileURL" mat-raised-button class="bote" (click)="delete()">Eliminar archivo y adjuntar nuevo</button>
     
       <mat-progress-bar class="uploading-bar" *ngIf="uploadToStorageService.uploadPercent" mode="determinate" [value]="uploadToStorageService.percentageNumber">{{uploadToStorageService.uploadPercent}}</mat-progress-bar>
       <span class="text-bar" *ngIf="uploadToStorageService.uploadPercent" >{{uploadToStorageService.uploadPercent}}</span>
-      <a class="emphasize" *ngIf="urlArchivo" mat-raised-button target="_blank" href="{{uploadToStorageService.uploadUrl}}">Vista previa</a>
+      <a class="emphasize" *ngIf="fileURL" mat-raised-button target="_blank" href="{{uploadToStorageService.uploadUrl}}">Vista previa</a>
   </mat-card>
   
 </div>

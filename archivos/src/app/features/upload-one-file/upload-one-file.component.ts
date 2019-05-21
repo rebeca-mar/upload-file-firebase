@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { UploadToStorageService } from 'src/app/_services/utilities/upload-to-storage.service';
 
 @Component({
@@ -9,31 +9,33 @@ import { UploadToStorageService } from 'src/app/_services/utilities/upload-to-st
 export class UploadOneFileComponent implements OnInit {
 
   constructor(public uploadToStorageService: UploadToStorageService) { }
-  urlArchivo: string;
+  fileURL: string;
+
+  @ViewChild('fileReceiver') receiver: ElementRef;
 
   ngOnInit() {
   }
 
-  public async subiraStorage(event: File | any): Promise<any>{
-    let ruta: string = 'Carpeta2/YYYY/MM/dd/';
-    let nombreArchivo: string;
-    let archivo: any;
+  public async uploadToStorage(event: File | any): Promise<any> {
+    let fileLocation: string = 'Carpeta2/YYYY/MM/dd/';
+    let fileName: string;
+    let pendingFile: any;
     let metadata = null;
     // let metadata = {
     //   customMetadata: {
     //      'attr': 'valor de lo que se quiere guardar'
     //   }
     // };
-    
-    archivo = event.currentTarget.files[0];
-    nombreArchivo = archivo.name;
 
-    // Si existe un archivo en la lista
-    if (archivo) {
-    let result = await this.uploadToStorageService.uploadFile(ruta + nombreArchivo, archivo, metadata);
-    this.urlArchivo = result;
+    pendingFile = event.currentTarget.files[0];
+    fileName = pendingFile.name;
+
+    // Si existe un pendingFile en la lista
+    if (pendingFile) {
+      let result = await this.uploadToStorageService.uploadFile(fileLocation + fileName, pendingFile, metadata);
+      this.fileURL = result;
     } else {
-      console.log("No hay archivos para cargar")
+      console.log("No file to upload")
       return null;
     }
   }
@@ -41,9 +43,17 @@ export class UploadOneFileComponent implements OnInit {
   public async delete() {
     let deleteResponse = await this.uploadToStorageService.deleteFile();
     this.uploadToStorageService.taskResponseFromUploadedFile = undefined;
-    this.urlArchivo = undefined;
-    console.log('respuesta al eliminar: ', deleteResponse);
-}
+    this.fileURL = undefined;
+    if(deleteResponse)
+      this.clearInput();
+    console.log('Delete response: ', deleteResponse);
+  }
+
+  clearInput(){
+    //console.log(this.receiver.nativeElement.files);
+    this.receiver.nativeElement.value = '';
+    //console.log(this.receiver.nativeElement.files);
+  }
 
 
 }
