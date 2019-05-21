@@ -4,14 +4,15 @@ import { UploadOneFileComponent } from './upload-one-file/upload-one-file.compon
 
 import {RouterModule} from '@angular/router';
 import { MaterialModule } from '../material.module';
+import { PreviewPopupComponent } from './preview-popup/preview-popup.component';
 
 @NgModule({
-  declarations: [UploadOneFileComponent],
+  declarations: [UploadOneFileComponent, PreviewPopupComponent],
   imports: [
     CommonModule,
     RouterModule,
     MaterialModule
   ],
-  entryComponents: [UploadOneFileComponent]
+  entryComponents: [UploadOneFileComponent, PreviewPopupComponent]
 })
 export class FeaturesModule { }

@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { UploadToStorageService } from 'src/app/_services/utilities/upload-to-storage.service';
+import { PreviewPopupComponent } from '../preview-popup/preview-popup.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-upload-one-file',
@@ -8,7 +10,7 @@ import { UploadToStorageService } from 'src/app/_services/utilities/upload-to-st
 })
 export class UploadOneFileComponent implements OnInit {
 
-  constructor(public uploadToStorageService: UploadToStorageService) { }
+  constructor(public uploadToStorageService: UploadToStorageService, private matDialog: MatDialog) { }
   fileURL: string;
 
   @ViewChild('fileReceiver') receiver: ElementRef;
@@ -55,5 +57,19 @@ export class UploadOneFileComponent implements OnInit {
     //console.log(this.receiver.nativeElement.files);
   }
 
+
+  async preview(){
+    console.log('62 URL ', this.fileURL)
+    const dialogPreview = this.matDialog.open(PreviewPopupComponent, {
+      width: '650px',
+      height: '600px',
+      data: {url: this.fileURL}
+    });
+    console.log('68 URL ', this.fileURL)
+
+    dialogPreview.afterClosed().subscribe(result => {
+      
+    });
+  }
 
 }

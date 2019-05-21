@@ -9,7 +9,8 @@
     
       <mat-progress-bar class="uploading-bar" *ngIf="uploadToStorageService.uploadPercent" mode="determinate" [value]="uploadToStorageService.percentageNumber">{{uploadToStorageService.uploadPercent}}</mat-progress-bar>
       <span class="text-bar" *ngIf="uploadToStorageService.uploadPercent" >{{uploadToStorageService.uploadPercent}}</span>
-      <a class="emphasize" *ngIf="fileURL" mat-raised-button target="_blank" href="{{uploadToStorageService.uploadUrl}}">Vista previa pestaña</a>
+      <a class="emphasize new-tab" *ngIf="fileURL" mat-raised-button target="_blank" href="{{uploadToStorageService.uploadUrl}}">Vista previa pestaña</a>
+      <button class="emphasize dialog-preview" *ngIf="fileURL" mat-raised-button (click)="preview()">Vista previa modal</button>
   </mat-card>
   
 </div>
